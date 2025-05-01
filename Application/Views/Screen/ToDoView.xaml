@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MAUIPos.Application.Views.Screen.ToDoView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ex="clr-namespace:MAUIPos.Application.Extensions"
+    xmlns:icon="clr-namespace:MAUIPos.Application.Extensions"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:view="clr-namespace:MAUIPos.Application.Views.Screen.Component"
+    xmlns:vm="clr-namespace:MAUIPos.Application.ViewModels"
+    Title="MainView"
+    Shell.TabBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <vm:ToDoViewModel />
+    </ContentPage.BindingContext>
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Grid Padding="10" HorizontalOptions="FillAndExpand">
+                <Label
+                    BackgroundColor="Transparent"
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="To Do"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </Grid>
+            <StackLayout
+                Margin="5,0"
+                HorizontalOptions="End"
+                VerticalOptions="Center">
+                <Label
+                    FontFamily="MaterialIcons"
+                    FontSize="24"
+                    Text="{StaticResource MaterialIconFilter_list}"
+                    TextColor="White" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding FilterEventCommand}" NumberOfTapsRequired="1" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <!--<Button
+                Margin="5,0"
+                BackgroundColor="Transparent"
+                Command="{Binding FilterEventCommand}"
+                CornerRadius="100"
+                FontFamily="MaterialIcons"
+                FontSize="24"
+                HorizontalOptions="End"
+                IsVisible="False"
+                Text="{x:Static ex:IconFont.Add}" />-->
+        </StackLayout>
+    </Shell.TitleView>
+    <StackLayout VerticalOptions="FillAndExpand">
+        <StackLayout
+            BackgroundColor="{StaticResource White}"
+            Orientation="Vertical"
+            VerticalOptions="FillAndExpand">
+            <!--<view:PopUpToDoComponent VerticalOptions="FillAndExpand" />-->
+            <StackLayout VerticalOptions="FillAndExpand">
+                <Grid
+                    Margin="0"
+                    Padding="0"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ActivityIndicator
+                        Grid.Row="0"
+                        IsRunning="{Binding IsLoadToDo, Mode=TwoWay}"
+                        WidthRequest="50"
+                        Color="{StaticResource Primary}" />
+                    <StackLayout
+                        Grid.Row="0"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand">
+                        <ListView CachingStrategy="RecycleElementAndDataTemplate" ItemsSource="{Binding LstTodoModel, Mode=TwoWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Padding="10" VerticalOptions="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <CheckBox
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                IsChecked="{Binding Status}"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                FontAttributes="Bold"
+                                                Text="{Binding Title}"
+                                                VerticalOptions="Center" />
+                                            <StackLayout
+                                                Grid.Row="0"
+                                                Grid.Column="2"
+                                                HorizontalOptions="End"
+                                                VerticalOptions="Center">
+                                                <Label
+                                                    FontFamily="MaterialIcons"
+                                                    FontSize="24"
+                                                    Text="{StaticResource MaterialIconDelete}"
+                                                    TextColor="{StaticResource MaterialDanger}" />
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DeleteEventCommand}"
+                                                        CommandParameter="{Binding .}"
+                                                        NumberOfTapsRequired="1" />
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                <Button
+                    Margin="0,5"
+                    BackgroundColor="{StaticResource MaterialDanger}"
+                    Command="{Binding DeleteEventSelectedCommand}"
+                    FontFamily="MaterialIcons"
+                    FontSize="24"
+                    HorizontalOptions="End"
+                    Text="{StaticResource MaterialIconDelete}"
+                    VerticalOptions="End" />
+                <Button
+                    Margin="5"
+                    Command="{Binding NewEventCommand}"
+                    FontFamily="MaterialIcons"
+                    FontSize="24"
+                    HorizontalOptions="End"
+                    Text="{StaticResource MaterialIconAdd}"
+                    VerticalOptions="End" />
+            </StackLayout>
+        </StackLayout>
+
+    </StackLayout>
+</ContentPage>

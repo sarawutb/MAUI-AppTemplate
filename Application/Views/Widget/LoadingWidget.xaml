@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIPos.Application.Views.Widget.LoadingWidget"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:vm="clr-namespace:MAUIPos.Application.Views.Widget"
+    BackgroundColor="Transparent">
+
+    <StackLayout
+        BackgroundColor="Transparent"
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions="CenterAndExpand">
+        <Frame
+            Padding="40,20"
+            BackgroundColor="White"
+            CornerRadius="15"
+            HasShadow="True"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand">
+            <VerticalStackLayout HorizontalOptions="CenterAndExpand" Spacing="20">
+                <!--<ActivityIndicator
+                    HeightRequest="100"
+                    HorizontalOptions="CenterAndExpand"
+                    IsRunning="True"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="130"
+                    Color="{StaticResource PrimaryDark}" />-->
+                <skia:SKLottieView
+                    HeightRequest="200"
+                    HorizontalOptions="Center"
+                    RepeatCount="-1"
+                    RepeatMode="Restart"
+                    Source="animation.json"
+                    WidthRequest="200" />
+                <Label
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="{Binding LoadingText}" />
+                <Button
+                    Clicked="ButtonCancel_Clicked"
+                    IsVisible="{Binding IsCancel}"
+                    Text="Cancel" />
+            </VerticalStackLayout>
+        </Frame>
+    </StackLayout>
+</ContentView>

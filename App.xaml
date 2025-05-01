@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Application
+    x:Class="MAUIPos.App"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:MAUIPos.Application.Converter"
+    xmlns:local="clr-namespace:MAUIPos"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="appColors" Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary x:Name="appStyles" Source="Resources/Styles/Styles.xaml" />
+                <ResourceDictionary Source="Resources/Icons/MaterialIcon.xaml" />
+                <material:StyleResource BasedOn="{x:Reference appStyles}" ColorsOverride="{x:Reference appColors}" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--  Only one converter is needed, remove the duplicate  -->
+            <converter:BoolToColorConverter x:Key="BoolToColorConverter" />
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="NotoSansThai" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

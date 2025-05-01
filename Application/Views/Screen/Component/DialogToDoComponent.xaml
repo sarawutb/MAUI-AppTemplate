@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIPos.Application.Views.Screen.Component.DialogToDoComponent"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#10000000">
+    <StackLayout>
+        <Frame
+            Margin="0,10"
+            Padding="5"
+            CornerRadius="10"
+            HeightRequest="300"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
+            WidthRequest="270">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Label
+                    Margin="0,10"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="To Do"
+                    VerticalOptions="Start" />
+                <Grid VerticalOptions="FillAndExpand">
+                    <Frame Padding="0" />
+                    <Editor
+                        x:Name="TitleName"
+                        Margin="5,0,5,0"
+                        Keyboard="Plain"
+                        Placeholder="Put some text here..." />
+                    <BoxView
+                        Margin="0,0,0,5"
+                        HeightRequest="1"
+                        VerticalOptions="End"
+                        Color="LightGray" />
+                </Grid>
+                <StackLayout
+                    Grid.Column="1"
+                    Margin="0,10"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    VerticalOptions="End">
+                    <Button
+                        Margin="5,0,5,5"
+                        BackgroundColor="{StaticResource Primary}"
+                        Clicked="Add"
+                        CornerRadius="10"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Add" />
+                    <Button
+                        Margin="5,0,5,5"
+                        BackgroundColor="{StaticResource Secondary}"
+                        Clicked="Close"
+                        CornerRadius="10"
+                        FontAttributes="Bold"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Close"
+                        TextColor="Black" />
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</ContentView>

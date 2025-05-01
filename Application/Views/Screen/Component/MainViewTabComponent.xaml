@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIPos.Application.Views.Screen.Component.MainViewTabComponent"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    x:Name="MainViewTabComponentView">
+    <StackLayout>
+        <!-- <Label Text="{Binding Source={x:Reference MainViewTabComponentView}, Path=IsSelected}" /> -->
+        <uranium:StatefulContentView TappedCommand="{Binding Source={x:Reference Name=MainViewTabComponentView}, Path=TappedCommand}" VerticalOptions="FillAndExpand">
+            <uranium:StatefulContentView.Triggers>
+                <DataTrigger
+                    Binding="{Binding Source={x:Reference MainViewTabComponentView}, Path=IsSelected}"
+                    TargetType="uranium:StatefulContentView"
+                    Value="True">
+                    <Setter Property="BackgroundColor" Value="#eca65f" />
+                </DataTrigger>
+                <DataTrigger
+                    Binding="{Binding Source={x:Reference MainViewTabComponentView}, Path=IsSelected}"
+                    TargetType="uranium:StatefulContentView"
+                    Value="False">
+                    <Setter Property="BackgroundColor" Value="{StaticResource MaterialWarningOrange}" />
+                </DataTrigger>
+            </uranium:StatefulContentView.Triggers>
+            <StackLayout VerticalOptions="FillAndExpand">
+                <Image VerticalOptions="EndAndExpand" WidthRequest="22">
+                    <Image.Source>
+                        <FontImageSource
+                            FontFamily="{Binding Source={x:Reference Name=MainViewTabComponentView}, Path=TabFontFamily}"
+                            Glyph="{Binding Source={x:Reference Name=MainViewTabComponentView}, Path=TabIcon}"
+                            Color="White" />
+                    </Image.Source>
+                </Image>
+                <Label
+                    Margin="0,2,0,0"
+                    FontSize="11"
+                    HorizontalOptions="Center"
+                    Text="{Binding Source={x:Reference Name=MainViewTabComponentView}, Path=TabText}"
+                    TextColor="White"
+                    VerticalOptions="StartAndExpand" />
+            </StackLayout>
+        </uranium:StatefulContentView>
+    </StackLayout>
+</ContentView>

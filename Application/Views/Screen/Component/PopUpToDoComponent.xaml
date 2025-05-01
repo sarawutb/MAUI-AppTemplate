@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIPos.Application.Views.Screen.Component.PopUpToDoComponent"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ex="clr-namespace:MAUIPos.Application.Extensions"
+    BackgroundColor="#00000000">
+    <StackLayout
+        Margin="5"
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions="CenterAndExpand">
+        <Frame
+            Margin="0"
+            Padding="0"
+            BackgroundColor="White"
+            CornerRadius="2"
+            VerticalOptions="Center">
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <ListView
+                    x:Name="ListViewItem"
+                    HasUnevenRows="True"
+                    HorizontalOptions="Center"
+                    ItemSelected="ListViewItem_ItemSelected"
+                    SelectionMode="Single"
+                    SeparatorVisibility="Default">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <VerticalStackLayout>
+                                    <StackLayout
+                                        Margin="5"
+                                        HeightRequest="25"
+                                        HorizontalOptions="Start"
+                                        Orientation="Horizontal"
+                                        VerticalOptions="Center">
+                                        <Label
+                                            FontFamily="MaterialIcons"
+                                            FontSize="24"
+                                            Text="{x:Static ex:IconFont.Mode_edit}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Margin="5,0"
+                                            Text="{Binding Name}"
+                                            VerticalOptions="Center" />
+                                        <!--<StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Command}" NumberOfTapsRequired="1" />
+                                            </StackLayout.GestureRecognizers>-->
+                                    </StackLayout>
+                                </VerticalStackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</ContentView>

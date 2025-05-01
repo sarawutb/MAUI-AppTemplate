@@ -1,0 +1,13 @@
+<FlyoutPage
+    x:Class="MAUIPos.AppView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MAUIPos.Application.Views.Screen"
+    xmlns:menu="clr-namespace:MAUIPos.Application.Views.Layout"
+    FlexLayout.AlignSelf="Auto"
+    FlexLayout.Basis="Auto">
+    <!--<FlyoutPage.Flyout>
+        <menu:FlyoutMenuPage x:Name="flyoutPage" />
+    </FlyoutPage.Flyout>-->
+    <FlyoutPage.Detail />
+</FlyoutPage>

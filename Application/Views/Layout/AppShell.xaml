@@ -1,0 +1,340 @@
+<Shell
+    x:Class="MAUIPos.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:convert="clr-namespace:MAUIPos.Application.Converter"
+    xmlns:ex="clr-namespace:MAUIPos.Application.Extensions"
+    xmlns:local="clr-namespace:MAUIPos.Application.Views.Screen"
+    xmlns:vm="clr-namespace:MAUIPos.Application.ViewModels"
+    Title="MAUIPos"
+    Shell.BackgroundColor="White"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.ForegroundColor="#2B3048"
+    Shell.PresentationMode="Animated"
+    Shell.TabBarIsVisible="False"
+    Shell.TabBarTitleColor="{StaticResource MaterialWarningOrange}"
+    Shell.TitleColor="{StaticResource MaterialWarningOrange}">
+    <Shell.BindingContext>
+        <vm:AppShellViewModel />
+    </Shell.BindingContext>
+
+    <!--<ShellContent ContentTemplate="{DataTemplate local:MainView}" Route="MainView" />-->
+    <!--  Flyout Header  -->
+    <!--<Shell.FlyoutHeader>
+        <StackLayout
+            Padding="10"
+            BackgroundColor="{StaticResource MaterialWarningOrange}"
+            HeightRequest="150"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
+            <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Frame
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Padding="0"
+                    BackgroundColor="Gray"
+                    CornerRadius="100"
+                    HeightRequest="70"
+                    HorizontalOptions="CenterAndExpand"
+                    IsClippedToBounds="True"
+                    VerticalOptions="Center"
+                    WidthRequest="70">
+                    <Image
+                        HorizontalOptions="FillAndExpand"
+                        Source="icon.png"
+                        VerticalOptions="FillAndExpand" />
+                </Frame>
+            </Grid>
+        </StackLayout>
+    -->
+    <!--<Grid
+            Padding="10"
+            BackgroundColor="{StaticResource MaterialWarningOrange}"
+            HeightRequest="150">
+            <Label
+                FontSize="20"
+                HorizontalOptions="Start"
+                Text="App Navigation"
+                TextColor="White"
+                VerticalOptions="Center" />
+        </Grid>-->
+    <!--
+    </Shell.FlyoutHeader>-->
+
+
+
+    <Shell.FlyoutHeader>
+        <AbsoluteLayout HeightRequest="170">
+            <!--  Background Image  -->
+            <Image
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Aspect="AspectFill"
+                Opacity="0.5"
+                Source="splash.png" />
+
+            <!--  Content on top  -->
+            <StackLayout
+                Padding="10"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="#80000000">
+                <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Frame
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        Padding="0"
+                        BackgroundColor="{StaticResource Gray400}"
+                        CornerRadius="100"
+                        HasShadow="True"
+                        HeightRequest="90"
+                        HorizontalOptions="CenterAndExpand"
+                        IsClippedToBounds="True"
+                        Opacity="0.5"
+                        VerticalOptions="Center"
+                        WidthRequest="90">
+                        <Image
+                            HorizontalOptions="FillAndExpand"
+                            Source="icon.png"
+                            VerticalOptions="FillAndExpand" />
+                    </Frame>
+                    <Label
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Margin="2,5"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="Admin"
+                        TextColor="White" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        FontSize="Small"
+                        HorizontalTextAlignment="Center"
+                        Text="Admin@Email.com"
+                        TextColor="White" />
+                </Grid>
+            </StackLayout>
+        </AbsoluteLayout>
+    </Shell.FlyoutHeader>
+
+
+
+    <!--  Custom Flyout Item Template  -->
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid Padding="0,2" VerticalOptions="Start">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackLayout
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Padding="10,8"
+                    Orientation="Horizontal">
+                    <Label
+                        FontFamily="MaterialIcons"
+                        FontSize="24"
+                        HorizontalOptions="Start"
+                        Text="{Binding Icon}"
+                        TextColor="{StaticResource MaterialWarningOrange}"
+                        VerticalOptions="End" />
+                    <Label
+                        Padding="10,0,0,0"
+                        FontAttributes="Bold"
+                        FontSize="13"
+                        HorizontalOptions="StartAndExpand"
+                        Text="{Binding Title}"
+                        TextColor="{StaticResource Gray600}"
+                        VerticalOptions="Center" />
+                </StackLayout>
+                <!--<BoxView
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="0"
+                    HeightRequest="0.1"
+                    StyleClass="Divider" />-->
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AppShellViewModel}}, Path=MenuGotoCommand}"
+                        CommandParameter="{Binding Route}"
+                        NumberOfTapsRequired="1" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <!--  Toolbar with TitleView  -->
+    <!--<Shell.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Grid Padding="10" HorizontalOptions="FillAndExpand">
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Dashboard"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </Grid>
+            <Button
+                BackgroundColor="Transparent"
+                Clicked="Button_Clicked"
+                FontFamily="MaterialIcons"
+                FontSize="24"
+                HorizontalOptions="End"
+                Text="{x:Static ex:IconFont.Add}" />
+        </StackLayout>
+    </Shell.TitleView>-->
+
+    <!--  Flyout Menu Items  -->
+    <FlyoutItem
+        x:Name="menuHome"
+        Title="Home"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="{StaticResource MaterialIconHome_filled}">
+        <ShellContent ContentTemplate="{DataTemplate local:MainView}" Route="MainView" />
+        <!--<ShellContent ContentTemplate="{DataTemplate local:LoginView}" Route="LoginView" />-->
+    </FlyoutItem>
+
+    <!--<FlyoutItem
+        Title="Home"
+        FlyoutDisplayOptions="AsSingleItem"
+        FlyoutIcon="{StaticResource MaterialIconHome}">
+
+        <Tab Title="Tab 1" Icon="{StaticResource MaterialIconHome}">
+            <ShellContent
+                Title="One"
+                ContentTemplate="{DataTemplate local:Page1}"
+                Route="OnePage" />
+        </Tab>
+        <Tab Title="Tab 2" Icon="{StaticResource MaterialIconHome}">
+            <ShellContent
+                Title="Two"
+                ContentTemplate="{DataTemplate local:Page2}"
+                Route="TwoPage" />
+        </Tab>
+        <Tab Title="Tab 3" Icon="{StaticResource MaterialIconHome}">
+            <ShellContent
+                Title="Three"
+                ContentTemplate="{DataTemplate local:Page3}"
+                Route="ThreePage" />
+        </Tab>
+    </FlyoutItem>-->
+
+    <!--<FlyoutItem Title="Screen2" Icon="{StaticResource MaterialIconFullscreen}">
+        <ShellContent Route="Screen2" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="ToDo" Icon="{StaticResource MaterialIconRun_circle}">
+        <ShellContent Route="ToDo" />
+    </FlyoutItem>-->
+    <FlyoutItem
+        Title="Setting"
+        Icon="{StaticResource MaterialIconSettings}"
+        Route="SettingView">
+        <ShellContent Route="SettingView" />
+    </FlyoutItem>
+    <Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <StackLayout>
+                <BoxView
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="0"
+                    HeightRequest="0.1"
+                    StyleClass="Divider" />
+                <Grid VerticalOptions="Start">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <!--<StackLayout
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        Padding="10,8"
+                        Orientation="Horizontal">
+                        <Label
+                            FontFamily="MaterialIcons"
+                            FontSize="24"
+                            HorizontalOptions="Start"
+                            Text="{StaticResource MaterialIconSettings}"
+                            TextColor="{StaticResource MaterialWarningOrange}"
+                            VerticalOptions="End" />
+                        <Label
+                            Padding="10,0,0,0"
+                            FontAttributes="Bold"
+                            FontSize="13"
+                            HorizontalOptions="StartAndExpand"
+                            Text="Setting"
+                            TextColor="{StaticResource Gray600}"
+                            VerticalOptions="Center" />
+                    </StackLayout>-->
+
+                    <StackLayout
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        Padding="10,8"
+                        BackgroundColor="{StaticResource MaterialDanger}"
+                        Orientation="Horizontal">
+                        <Label
+                            FontFamily="MaterialIcons"
+                            FontSize="24"
+                            HorizontalOptions="Start"
+                            Text="{StaticResource MaterialIconLogout}"
+                            TextColor="{StaticResource White}"
+                            VerticalOptions="End" />
+                        <Label
+                            Padding="10,0,0,0"
+                            FontAttributes="Bold"
+                            FontSize="13"
+                            HorizontalOptions="StartAndExpand"
+                            Text="Log Out"
+                            TextColor="{StaticResource White}"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AppShellViewModel}}, Path=LogoutCommand}" NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <!--<Grid
+                    Padding="10"
+                    BackgroundColor="{StaticResource MaterialWarningOrange}"
+                    HeightRequest="150">
+                    <Label
+                        FontSize="20"
+                        HorizontalOptions="Start"
+                        Text="App2 Navigation"
+                        TextColor="White"
+                        VerticalOptions="Center" />
+                </Grid>-->
+            </StackLayout>
+        </DataTemplate>
+    </Shell.FlyoutFooterTemplate>
+</Shell>

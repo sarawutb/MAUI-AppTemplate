@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MAUIPos.Application.Views.Screen.ChatRoomView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:MAUIPos.Application.ViewModels"
+    Title="{Binding RoomName}">
+    <ContentPage.BindingContext>
+        <vm:ChatRoomViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout Spacing="5" VerticalOptions="FillAndExpand">
+
+            <!--  Chat Messages List  -->
+            <CollectionView ItemsSource="{Binding Messages}" VerticalOptions="FillAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame
+                                Margin="5"
+                                Padding="10"
+                                BackgroundColor="{StaticResource MaterialSuccess}"
+                                CornerRadius="100"
+                                HorizontalOptions="End"
+                                IsVisible="{Binding IsUser}">
+                                <Label
+                                    HorizontalTextAlignment="End"
+                                    Text="{Binding Text}"
+                                    TextColor="White" />
+                            </Frame>
+                            <Frame
+                                Margin="5"
+                                Padding="10"
+                                BackgroundColor="White"
+                                CornerRadius="100"
+                                HorizontalOptions="Start"
+                                IsVisible="{Binding IsUser, Converter={StaticResource InverseBoolConverter}}">
+                                <Label Text="{Binding Text}" TextColor="Black" />
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--  Input Field & Send Button  -->
+            <Grid Padding="5" ColumnDefinitions="*, Auto">
+                <Entry Placeholder="Type a message..." Text="{Binding NewMessage}" />
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding SendMessageCommand}"
+                    Text="Send" />
+            </Grid>
+
+        </StackLayout>
+        <!--<ListView ItemsSource="{Binding LstRoom}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <VerticalStackLayout>
+                            <HorizontalStackLayout>
+                                <Label
+                                    Padding="10"
+                                    FontSize="18"
+                                    HorizontalOptions="FillAndExpand"
+                                    Text="{Binding .}" />
+                            </HorizontalStackLayout>
+                            <Border />
+                        </VerticalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
+    </StackLayout>
+</ContentPage>

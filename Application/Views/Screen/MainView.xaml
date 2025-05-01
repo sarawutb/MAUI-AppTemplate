@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MAUIPos.Application.Views.Screen.MainView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ex="clr-namespace:MAUIPos.Application.Extensions"
+    xmlns:fa="clr-namespace:UraniumUI.Icons.FontAwesome;assembly=UraniumUI.Icons.FontAwesome"
+    xmlns:icon="clr-namespace:MAUIPos.Application.Extensions"
+    xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    xmlns:view="clr-namespace:MAUIPos.Application.Views.Screen.Component"
+    xmlns:vm="clr-namespace:MAUIPos.Application.ViewModels"
+    xmlns:widget="clr-namespace:MAUIPos.Application.Views.Widget"
+    Shell.NavBarHasShadow="True">
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal" StyleClass="Elevation1">
+            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <Label
+                    BackgroundColor="Transparent"
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    HorizontalOptions="Start"
+                    Text="App"
+                    TextColor="#2B3048"
+                    VerticalOptions="Center" />
+                <BoxView Margin="2,0" />
+                <Label
+                    BackgroundColor="Transparent"
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    HorizontalOptions="Start"
+                    Text="Template"
+                    TextColor="{StaticResource MaterialWarningOrange}"
+                    VerticalOptions="Center" />
+            </StackLayout>
+            <!--<StackLayout HorizontalOptions="End" VerticalOptions="Center">
+                <uranium:Dropdown
+                    FontFamily="MaterialIcons"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    Placeholder="{StaticResource MaterialIconSettings}"
+                    VerticalOptions="Center">
+                    <uranium:Dropdown.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Item 1</x:String>
+                            <x:String>Item 2</x:String>
+                            <x:String>Item 3</x:String>
+                        </x:Array>
+                    </uranium:Dropdown.ItemsSource>
+                </uranium:Dropdown>
+            </StackLayout>-->
+            <!--<StackLayout
+                Margin="5,0,15,0"
+                HorizontalOptions="End"
+                VerticalOptions="Center">
+                <Image WidthRequest="20">
+                    <Image.Source>
+                        <FontImageSource
+                            FontFamily="FASolid"
+                            Glyph="{x:Static fa:Solid.Barcode}"
+                            Color="{StaticResource MaterialWarningOrange}" />
+                    </Image.Source>
+                </Image>
+            </StackLayout>
+            <StackLayout
+                Margin="5,0"
+                HorizontalOptions="End"
+                VerticalOptions="Center">
+                <Image WidthRequest="20">
+                    <Image.Source>
+                        <FontImageSource
+                            FontFamily="FASolid"
+                            Glyph="{x:Static fa:Solid.PowerOff}"
+                            Color="{StaticResource MaterialWarningOrange}" />
+                    </Image.Source>
+                </Image>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding FilterEventCommand}" NumberOfTapsRequired="1" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>-->
+
+            <!--<Button
+                Margin="5,0"
+                BackgroundColor="Transparent"
+                Command="{Binding FilterEventCommand}"
+                CornerRadius="100"
+                FontFamily="MaterialIcons"
+                FontSize="24"
+                HorizontalOptions="End"
+                IsVisible="False"
+                Text="{x:Static ex:IconFont.Add}" />-->
+
+        </StackLayout>
+    </Shell.TitleView>
+    <StackLayout VerticalOptions="FillAndExpand">
+        <StackLayout VerticalOptions="FillAndExpand">
+            <ScrollView VerticalOptions="FillAndExpand">
+                <StackLayout>
+                    <!--<Image
+                        Aspect="AspectFit"
+                        HeightRequest="185"
+                        SemanticProperties.Description="dot net bot in a race car number eight"
+                        Source="dotnet_bot.png" />
+
+                    <Label
+                        SemanticProperties.HeadingLevel="Level1"
+                        Style="{StaticResource Headline}"
+                        Text="Hello, World!" />
+
+                    <Label
+                        SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                        SemanticProperties.HeadingLevel="Level2"
+                        Style="{StaticResource SubHeadline}"
+                        Text="Welcome to &#10;.NET Multi-platform App UI" />-->
+                    <CollectionView
+                        x:Name="collectionView"
+                        Margin="5,0"
+                        BackgroundColor="#EFF2EF"
+                        ItemsSource="{Binding MenuItems}"
+                        SelectionMode="Single"
+                        VerticalOptions="FillAndExpand"
+                        VerticalScrollBarVisibility="Never">
+
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="3" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Margin="5,10"
+                                    Padding="0,10"
+                                    BackgroundColor="White"
+                                    CornerRadius="3"
+                                    HorizontalOptions="CenterAndExpand"
+                                    WidthRequest="90">
+                                    <StackLayout VerticalOptions="Center">
+                                        <Image WidthRequest="38">
+                                            <Image.Source>
+                                                <FontImageSource
+                                                    FontFamily="MaterialIcons"
+                                                    Glyph="{Binding Icon}"
+                                                    Color="{Binding Color}" />
+                                            </Image.Source>
+                                        </Image>
+                                        <Label
+                                            Margin="0,10,0,0"
+                                            FontSize="10"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding Title}"
+                                            TextColor="Black" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=GoToPageCommand}"
+                                                CommandParameter="{Binding Page}"
+                                                NumberOfTapsRequired="1" />
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <!--<material:DatePickerField Title="Pick a Time" Format="dd-MM-yyyy" />
+                    <material:TimePickerField Title="Pick a Time" Format="HH:mm" />
+
+                    <uranium:StatefulContentView LongPressCommand="{Binding DoSomethingCommand}">
+                        <Border
+                            Padding="20"
+                            BackgroundColor="{StaticResource Primary}"
+                            Stroke="{StaticResource Tertiary}"
+                            StrokeShape="{RoundRectangle CornerRadius=5}">
+                            <Label Text="This is a stateful view" TextColor="{StaticResource OnPrimary}" />
+                        </Border>
+                    </uranium:StatefulContentView>-->
+                </StackLayout>
+
+                <!--<material:TabView>
+                    <material:TabItem Title="Tab One">
+                        <material:TabItem.ContentTemplate>
+                            <DataTemplate>
+                                <Label Text="First Tabx" />
+                            </DataTemplate>
+                        </material:TabItem.ContentTemplate>
+                    </material:TabItem>
+
+
+                    <material:TabItem Title="Tab Two">
+                        <material:TabItem.ContentTemplate>
+                            <DataTemplate>
+                                <Label Text="Second Tab" />
+                            </DataTemplate>
+                        </material:TabItem.ContentTemplate>
+                    </material:TabItem>
+
+                    <material:TabItem Title="Tab Three">
+                        <material:TabItem.ContentTemplate>
+                            <DataTemplate>
+                                <Label Text="Third Tab" />
+                            </DataTemplate>
+                        </material:TabItem.ContentTemplate>
+                    </material:TabItem>
+                </material:TabView>-->
+
+            </ScrollView>
+            <StackLayout
+                BackgroundColor="{StaticResource MaterialWarningOrange}"
+                HeightRequest="60"
+                HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <view:MainViewTabComponent
+                        Grid.Column="0"
+                        IsSelected="{Binding SelectedTab1}"
+                        TabFontFamily="MaterialIcons"
+                        TabIcon="{x:Static m:MaterialSharp.Home}"
+                        TabText="Home"
+                        TappedCommand="{Binding Tab1TappedCommand}" />
+                    <view:MainViewTabComponent
+                        Grid.Column="1"
+                        IsSelected="{Binding selectedTab2}"
+                        TabFontFamily="MaterialIcons"
+                        TabIcon="{x:Static m:MaterialSharp.Inventory}"
+                        TabText="Home"
+                        TappedCommand="{Binding Tab2TappedCommand}" />
+                    <view:MainViewTabComponent
+                        Grid.Column="2"
+                        IsSelected="{Binding selectedTab3}"
+                        TabFontFamily="MaterialIcons"
+                        TabIcon="{x:Static m:MaterialSharp.Train}"
+                        TabText="Home"
+                        TappedCommand="{Binding Tab3TappedCommand}" />
+                    <view:MainViewTabComponent
+                        Grid.Column="3"
+                        IsSelected="{Binding SelectedTab4}"
+                        TabFontFamily="MaterialIcons"
+                        TabIcon="{x:Static m:MaterialSharp.Quiz}"
+                        TabText="Home"
+                        TappedCommand="{Binding Tab4TappedCommand}" />
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+        <!--<Frame
+            Margin="0,0,10,10"
+            Padding="5"
+            BackgroundColor="{StaticResource MaterialWarningOrange}"
+            CornerRadius="25"
+            HasShadow="True"
+            HeightRequest="50"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            WidthRequest="50">
+            <Image WidthRequest="20">
+                <Image.Source>
+                    <FontImageSource
+                        FontFamily="FASolid"
+                        Glyph="{x:Static fa:Solid.Plus}"
+                        Color="{StaticResource White}" />
+                </Image.Source>
+            </Image>
+        </Frame>
+        <Button
+            x:Name="CounterBtn"
+            Margin="5,0,5,5"
+            Command="{Binding GoToScreen2Command}"
+            HorizontalOptions="Fill"
+            IsVisible="False"
+            SemanticProperties.Hint="Go To Screen2"
+            Text="Go To Screen2"
+            VerticalOptions="End" />-->
+    </StackLayout>
+</ContentPage>

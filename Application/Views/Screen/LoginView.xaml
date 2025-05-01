@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MAUIPos.Application.Views.Screen.LoginView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+    xmlns:fa="clr-namespace:UraniumUI.Icons.FontAwesome;assembly=UraniumUI.Icons.FontAwesome"
+    xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.MaterialCommunity"
+    xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
+    xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:v="clr-namespace:UraniumUI.Validations;assembly=UraniumUI.Validations.DataAnnotations"
+    xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
+    xmlns:vm="clr-namespace:MAUIPos.Application.ViewModels"
+    xmlns:widget="clr-namespace:MAUIPos.Application.Views.Widget"
+    Title="LoginView"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.FlyoutItemIsVisible="False"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+        <AbsoluteLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+            <Image
+                AbsoluteLayout.LayoutBounds="1,0,0,0.1"
+                AbsoluteLayout.LayoutFlags="All"
+                Aspect="Center"
+                HorizontalOptions="CenterAndExpand"
+                Opacity="0.3"
+                Source="bg01.jpg" />
+            <StackLayout
+                x:Name="StackLayoutLogo"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End">
+                <Image
+                    x:Name="ImageLogo"
+                    Source="innovation_logo.png"
+                    VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+        </AbsoluteLayout>
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Frame
+                Grid.Row="0"
+                Margin="0,50,0,0"
+                BackgroundColor="White"
+                HasShadow="True"
+                VerticalOptions="FillAndExpand" />
+            <Frame
+                Grid.Row="0"
+                Padding="0"
+                BackgroundColor="White"
+                CornerRadius="50"
+                HasShadow="True"
+                VerticalOptions="FillAndExpand">
+                <StackLayout VerticalOptions="FillAndExpand">
+                    <ScrollView VerticalOptions="FillAndExpand">
+                        <FlexLayout
+                            BackgroundColor="Transparent"
+                            Direction="Column"
+                            HorizontalOptions="FillAndExpand"
+                            JustifyContent="Start"
+                            VerticalOptions="FillAndExpand">
+                            <input:FormView
+                                Margin="10"
+                                Spacing="10"
+                                SubmitCommand="{Binding LoginCommand}"
+                                VerticalOptions="FillAndExpand">
+
+                                <Label
+                                    BackgroundColor="Transparent"
+                                    FontAttributes="Bold"
+                                    FontSize="Large"
+                                    HorizontalTextAlignment="Center"
+                                    Text="INNOVATION ERP"
+                                    TextColor="{StaticResource Black}" />
+
+                                <BoxView Margin="0,0" />
+
+                                <!--<material:TextField Title="Username" Style="{StaticResource MaterialTextFieldSuccess}">
+                               <validation:RequiredValidation />
+                               <validation:LettersOnlyValidation AllowSpaces="True" />
+                           </material:TextField>-->
+
+                                <!--<input:AdvancedEntry Title="Username" IgnoreSafeArea="True">
+                               <input:AdvancedEntry.Validations>
+                                   <validation:RequiredValidation />
+                                   <validation:MinLengthValidation Message="กรุณา" MinLength="5" />
+                               </input:AdvancedEntry.Validations>
+                           </input:AdvancedEntry>
+                           <Button input:FormView.IsSubmitButton="True" Text="Submit" />-->
+                                <material:TextField
+                                    Title="Email"
+                                    AccentColor="{StaticResource Primary}"
+                                    AllowClear="True"
+                                    BorderColor="{StaticResource Primary}"
+                                    ClearButtonVisibility="Never"
+                                    Text="{v:ValidationBinding Email}" />
+
+
+                                <!--<material:TextField
+                                    Title="Email"
+                                    AccentColor="{StaticResource Primary}"
+                                    AllowClear="True"
+                                    BorderColor="{StaticResource Primary}"
+                                    ClearButtonVisibility="Never"
+                                    Text="{Binding Username, Mode=TwoWay}">
+                                    <validation:RegexValidation Message="อีเมลไม่ถูกต้อง" Pattern="{x:Static input:AdvancedEntry.REGEX_EMAIL}" />
+                                </material:TextField>-->
+
+                                <material:TextField
+                                    Title="Password"
+                                    AccentColor="{StaticResource Primary}"
+                                    AllowClear="False"
+                                    BorderColor="{StaticResource Primary}"
+                                    ClearButtonVisibility="Never"
+                                    IsPassword="True"
+                                    Text="{Binding Password, Mode=TwoWay}">
+                                    <validation:MinLengthValidation Message="กรุณากรอกรหัส 8 อักขระ" MinLength="8" />
+                                    <material:TextField.Attachments>
+                                        <material:TextFieldPasswordShowHideAttachment />
+                                    </material:TextField.Attachments>
+                                </material:TextField>
+                                <BoxView Margin="0,0,0,0" />
+                                <StackLayout
+                                    HorizontalOptions="Fill"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Button
+                                        input:FormView.IsSubmitButton="True"
+                                        BackgroundColor="{StaticResource MaterialSuccess}"
+                                        HeightRequest="50"
+                                        HorizontalOptions="FillAndExpand"
+                                        SemanticProperties.Hint="Login"
+                                        Text="Login"
+                                        VerticalOptions="End" />
+                                    <Button
+                                        Margin="5,0,0,0"
+                                        input:FormView.IsResetButton="True"
+                                        BackgroundColor="{StaticResource MaterialWarning}"
+                                        HeightRequest="50"
+                                        HorizontalOptions="FillAndExpand"
+                                        SemanticProperties.Hint="Register"
+                                        Text="Reset"
+                                        VerticalOptions="End" />
+                                </StackLayout>
+                            </input:FormView>
+
+                        </FlexLayout>
+                    </ScrollView>
+
+                    <!--  Footer  -->
+                    <StackLayout
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal"
+                        VerticalOptions="End">
+                        <Label
+                            BackgroundColor="Transparent"
+                            FontAttributes="Bold"
+                            FontSize="15"
+                            HorizontalTextAlignment="End"
+                            Text="{Binding Version}"
+                            TextColor="{AppThemeBinding Light=Black,
+                                                        Dark=White}"
+                            VerticalOptions="End" />
+                        <Label
+                            Margin="5,0,0,0"
+                            BackgroundColor="Transparent"
+                            FontAttributes="Bold"
+                            FontSize="15"
+                            HorizontalTextAlignment="Start"
+                            Text="{Binding Mode, StringFormat='{0:0}'}"
+                            TextColor="{AppThemeBinding Light=Black,
+                                                        Dark=White}"
+                            VerticalOptions="End" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </StackLayout>
+
+</ContentPage>
